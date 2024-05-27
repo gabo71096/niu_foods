@@ -8,7 +8,7 @@
             <p>Status: <span><%= restaurant_info[rwd.id][:status] %></span></p>
             <i class="bi bi-circle-fill text-<%= status_color(restaurant_info[rwd.id][:status]) %>"></i>
           </div>
-          <p>Updated at: <%= restaurant_info[rwd.id][:updated_at] %></p>
+          <p>Updated at: <%= format_datetime(local_time(restaurant_info[rwd.id][:updated_at])) %></p>
         </div>
         <% rwd.restaurant_devices.each do |rd| %>
           <%= render rd %>

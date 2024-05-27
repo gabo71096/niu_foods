@@ -13,7 +13,7 @@
         </p>
         <p>
           Last updated:
-          <span><%= restaurant_device.updated_at %></span>
+          <span><%= format_datetime(local_time(restaurant_device.updated_at)) %></span>
         </p>
       </div>
       <div class="align-items-center col-2 d-flex justify-content-center">
