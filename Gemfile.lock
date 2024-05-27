@@ -78,7 +78,9 @@ GEM
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
+    backport (1.2.0)
     base64 (0.2.0)
+    benchmark (0.3.0)
     better_html (2.1.1)
       actionview (>= 6.0)
       activesupport (>= 6.0)
@@ -112,7 +114,9 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    diff-lcs (1.5.1)
     drb (2.2.1)
+    e2mmap (0.1.0)
     erb_lint (0.5.0)
       activesupport
       better_html (>= 2.0.1)
@@ -142,10 +146,15 @@ GEM
     irb (1.13.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    jaro_winkler (1.5.6)
     jbuilder (2.12.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.7.2)
+    kramdown (2.4.0)
+      rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -233,6 +242,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
+    rbs (2.8.4)
     rdoc (6.7.0)
       psych (>= 4.0.0)
     redis (5.2.0)
@@ -242,6 +252,8 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.7)
       io-console (~> 0.5)
+    reverse_markdown (2.1.1)
+      nokogiri
     rexml (3.2.8)
       strscan (>= 3.0.9)
     rubocop (1.64.0)
@@ -284,6 +296,25 @@ GEM
       sidekiq (>= 6, < 8)
       tilt (>= 1.4.0)
     smart_properties (1.17.0)
+    solargraph (0.50.0)
+      backport (~> 1.2)
+      benchmark
+      bundler (~> 2.0)
+      diff-lcs (~> 1.4)
+      e2mmap
+      jaro_winkler (~> 1.5)
+      kramdown (~> 2.3)
+      kramdown-parser-gfm (~> 1.1)
+      parser (~> 3.0)
+      rbs (~> 2.0)
+      reverse_markdown (~> 2.0)
+      rubocop (~> 1.38)
+      thor (~> 1.0)
+      tilt (~> 2.0)
+      yard (~> 0.9, >= 0.9.24)
+    solargraph-rails (1.1.0)
+      activesupport
+      solargraph
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -324,6 +355,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yard (0.9.36)
     zeitwerk (2.6.15)
 
 PLATFORMS
@@ -354,6 +386,8 @@ DEPENDENCIES
   selenium-webdriver
   sidekiq (~> 7.2, >= 7.2.4)
   sidekiq-scheduler (~> 5.0, >= 5.0.3)
+  solargraph (~> 0.50.0)
+  solargraph-rails (~> 1.1)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails

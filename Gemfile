@@ -83,6 +83,10 @@ group :development do
   gem 'better_html', '~> 2.1', '>= 2.1.1'
   gem 'erb_lint', '~> 0.5.0', require: false
   gem 'htmlbeautifier', '~> 1.4', '>= 1.4.3'
+
+  # Solargraph
+  gem 'solargraph', '~> 0.50.0'
+  gem 'solargraph-rails', '~> 1.1'
 end
 
 group :test do
