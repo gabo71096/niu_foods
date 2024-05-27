@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  status: MyString
+  name: Restaurant 1 Web Server
+  status: :ok
+  device_type: :web_server
   restaurant: one
 
 two:
-  name: MyString
-  status: MyString
+  name: Restaurant 2 Printer
+  status: :error
+  device_type: :printer
   restaurant: two
