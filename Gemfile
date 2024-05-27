@@ -80,13 +80,13 @@ group :development do
   gem 'rubocop-rails', '~> 2.25', require: false
 
   # ERB related
-  gem 'better_html', '~> 2.1', '>= 2.1.1'
+  gem 'better_html', '~> 2.1', '>= 2.1.1', require: false
   gem 'erb_lint', '~> 0.5.0', require: false
-  gem 'htmlbeautifier', '~> 1.4', '>= 1.4.3'
+  gem 'htmlbeautifier', '~> 1.4', '>= 1.4.3', require: false
 
   # Solargraph
-  gem 'solargraph', '~> 0.50.0'
-  gem 'solargraph-rails', '~> 1.1'
+  gem 'solargraph', '~> 0.50.0', require: false
+  gem 'solargraph-rails', '~> 1.1', require: false
 end
 
 group :test do
