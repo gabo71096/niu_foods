@@ -60,6 +60,9 @@ gem 'goldiloader', '~> 5.2', '>= 5.2.2'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
+
+  # Performance monitoring
+  gem 'bullet', '~> 7.1', '>= 7.1.6'
 end
 
 group :development do
@@ -75,9 +78,6 @@ group :development do
   # Rubocop related
   gem 'rubocop-performance', '~> 1.21', require: false
   gem 'rubocop-rails', '~> 2.25', require: false
-
-  # Performance monitoring
-  gem 'bullet', '~> 7.1', '>= 7.1.6'
 
   # ERB related
   gem 'better_html', '~> 2.1', '>= 2.1.1'
