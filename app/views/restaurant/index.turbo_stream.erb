@@ -1,0 +1,4 @@
+<%= turbo_stream.replace @turboframe_id,
+                         partial: 'restaurants',
+                         locals: { restaurants_with_devices: @restaurants_with_devices,
+                                   restaurant_info: @restaurant_info } %>

@@ -1,0 +1,6 @@
+<div class="container vh-100" data-controller="restaurant--index">
+  <h1 class="text-center">Restaurants</h1>
+  <%= render partial: "restaurants",
+             locals: { restaurants_with_devices: @restaurants_with_devices,
+                       restaurant_info: @restaurant_info } %>
+</div>

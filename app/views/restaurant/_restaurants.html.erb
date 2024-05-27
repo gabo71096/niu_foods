@@ -1,0 +1,19 @@
+<%= turbo_frame_tag @turboframe_id do %>
+  <div class="row">
+    <% restaurants_with_devices.each do |rwd| %>
+      <div class="col-12 col-md-6 col-xl-4">
+        <div class="mb-3">
+          <h2><%= rwd.name %></h2>
+          <div class="d-flex justify-content-between">
+            <p>Status: <span><%= restaurant_info[rwd.id][:status] %></span></p>
+            <i class="bi bi-circle-fill text-<%= status_color(restaurant_info[rwd.id][:status]) %>"></i>
+          </div>
+          <p>Updated at: <%= restaurant_info[rwd.id][:updated_at] %></p>
+        </div>
+        <% rwd.restaurant_devices.each do |rd| %>
+          <%= render rd %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
