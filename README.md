@@ -27,3 +27,11 @@ Para levantar el proyecto sin Docker probablemente sera necesario retocar alguna
 ## Docker
 
 Si deseas usar Docker, posicionate en la raiz del proyecto, ejecuta `docker compose build`, luego `cp example.env .env` para copiar nuestras variables de entorno, luego `docker compose run --rm rails bash` para entrar en la consola del contenedor `rails`, ejecutamos `bundle` (esto deberia ser rapido considerando que se realiza bundle al momento de construir el Dockerfile), y finalmente `bin/rails db:setup`.
+
+## Troubleshooting
+
+A veces el proceso de construccion de Docker arrojara un error `ERROR [rails internal] load build context` diciendo que no tiene permiso para acceder a unos archivos.
+
+El error en cuestion es este `failed to solve: error from sender: open /path_to_project/niu_foods/tmp/db: permission denied`.
+
+Para resolverlo, simplemente ejecutamos `sudo chown -R $USER:$USER .` para adueñarnos de los archivos en conflicto, y luego ejecutamos `docker compose up --build` para levantar nuevamente el contenedor y construir si hubieron cambios.
