@@ -8,27 +8,36 @@ FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 WORKDIR /rails
 
 # Set production environment
-ENV RAILS_ENV="production" \
-    BUNDLE_DEPLOYMENT="1" \
-    BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+ARG RAILS_ENV=production
+ARG BUNDLE_DEPLOYMENT=1
+ARG BUNDLE_PATH="/usr/local/bundle"
+ARG BUNDLE_WITHOUT=development
 
+ENV RAILS_ENV $RAILS_ENV
+ENV BUNDLE_DEPLOYMENT $BUNDLE_DEPLOYMENT
+ENV BUNDLE_PATH $BUNDLE_PATH
+ENV BUNDLE_WITHOUT $BUNDLE_WITHOUT
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl git libvips node-gyp pkg-config python-is-python3
+    apt-get install --no-install-recommends -y \
+        build-essential curl git libvips node-gyp \
+        pkg-config python-is-python3 unzip libpq-dev
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.11.0
 ARG YARN_VERSION=1.22.21
 ENV PATH=/usr/local/node/bin:$PATH
+ENV BUN_INSTALL="/root/.bun"
+ENV PATH="$BUN_INSTALL/bin:$PATH"
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
     npm install -g yarn@$YARN_VERSION && \
     rm -rf /tmp/node-build-master
+RUN curl -fsSL https://bun.sh/install | bash
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -55,7 +64,7 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
+    apt-get install --no-install-recommends -y curl libpq-dev libvips && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
