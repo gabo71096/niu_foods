@@ -16,10 +16,10 @@ services:
     container_name: niu_foods_app
     depends_on:
       - postgres
-      - redis
+      - sidekiq
     env_file:
       - .env
-    image: niu_foods_app:1.0
+    image: gabo_71096/niu_foods_app:1.0
     ports:
       - 3000:3000
     volumes:
@@ -29,3 +29,19 @@ services:
     image: redis:7.2.5
     restart: always
     command: redis-server
+  sidekiq:
+    build:
+      context: .
+      args:
+        RAILS_ENV: development
+        BUNDLE_WITHOUT:
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    container_name: niu_foods_background_jobs
+    depends_on:
+      - redis
+    env_file:
+      - .env
+    image: gabo_71096/niu_foods_app:1.0
+    restart: always
+    volumes:
+      - .:/rails
