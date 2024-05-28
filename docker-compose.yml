@@ -15,7 +15,6 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     container_name: niu_foods_app
     depends_on:
-      - postgres
       - sidekiq
     env_file:
       - .env
@@ -38,6 +37,7 @@ services:
     command: bundle exec sidekiq -C config/sidekiq.yml
     container_name: niu_foods_background_jobs
     depends_on:
+      - postgres
       - redis
     env_file:
       - .env
