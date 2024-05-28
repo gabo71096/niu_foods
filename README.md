@@ -30,6 +30,8 @@ Si deseas usar Docker, posicionate en la raiz del proyecto, ejecuta `docker comp
 
 ## Troubleshooting
 
+### ERROR [rails internal] load build context
+
 A veces el proceso de construccion de Docker arrojara un error `ERROR [rails internal] load build context` diciendo que no tiene permiso para acceder a unos archivos.
 
 El error en cuestion es este `failed to solve: error from sender: open /path_to_project/niu_foods/tmp/db: permission denied`.
